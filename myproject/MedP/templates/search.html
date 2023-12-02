@@ -1,0 +1,45 @@
+<!-- myapp/templates/myapp/search.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search App</title>
+    <style>
+        /* Add CSS styles for image resizing */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li img {
+            max-width: 50%;
+            /* Set the maximum width to the container width */
+            height: auto;
+            /* Maintain the aspect ratio */
+            margin-bottom: 10px;
+            /* Add some margin between images */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Search App</h1>
+
+    <form method="get" action="{% url 'search' %}">
+        <label for="query">Search:</label>
+        <input type="text" name="query" id="query" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if result %}
+    <ul>
+        {% for img in result %}
+        <li><img src="{{ img }}" alt="Result Image"></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+
+</html>
